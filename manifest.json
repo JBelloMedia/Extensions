@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn AI Reply Assistant",
+  "version": "1.0.0",
+  "description": "Suggest AI-powered replies for LinkedIn comments and posts.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://api.openai.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "LinkedIn AI Reply Assistant",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html"
+}
