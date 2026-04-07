@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storyboard Slide Designer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Storyboard Slide Designer</h1>
+      <p>
+        Paste your script or voiceover, choose segmentation style, and generate design-first slide
+        direction for your video scenes.
+      </p>
+      <p class="preview-note">
+        Quick preview: run <code>node preview-server.js</code> and open
+        <code>http://localhost:4173</code>.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="panel input-panel">
+        <h2>Input</h2>
+
+        <label for="videoTopic">Video topic / purpose</label>
+        <textarea id="videoTopic" rows="3" placeholder="What is the video about? Who is it for? What feeling should it create?"></textarea>
+
+        <label for="scriptInput">Voiceover script</label>
+        <textarea id="scriptInput" rows="10" placeholder="Paste your script here..."></textarea>
+
+        <div class="controls">
+          <fieldset>
+            <legend>Slide segmentation mode</legend>
+            <label class="radio-line">
+              <input type="radio" name="mode" value="sentence" checked />
+              Every sentence as a separate scene
+            </label>
+            <label class="radio-line">
+              <input type="radio" name="mode" value="phrases" />
+              Group related phrases into one scene
+            </label>
+          </fieldset>
+
+          <label for="sceneWordLimit">Phrase-grouping sensitivity (max words per grouped scene)</label>
+          <input id="sceneWordLimit" type="number" min="10" max="80" value="28" />
+        </div>
+
+        <div class="button-row">
+          <button id="generateBtn">Generate Slide Plan</button>
+          <button id="demoBtn" class="secondary-btn">Load Demo + Preview</button>
+        </div>
+      </section>
+
+      <section class="panel output-panel">
+        <h2>Slide Blueprint Output</h2>
+        <div id="summary" class="summary"></div>
+        <div id="slidesContainer" class="slides-grid"></div>
+      </section>
+    </main>
+
+    <template id="slideCardTemplate">
+      <article class="slide-card">
+        <div class="slide-card-header">
+          <h3></h3>
+          <p class="scene-copy"></p>
+        </div>
+        <ol class="variation-list"></ol>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
