@@ -17,7 +17,23 @@ A lightweight single-page app that converts a video script/voiceover into scene-
   - Animation handoff notes for editors/animators
 - Includes **Load Demo + Preview** to instantly populate sample content and render output.
 
-## Preview locally
+## Use it directly in this ChatGPT coding environment
+
+If you want to use it "in here" without opening a browser, run the CLI generator:
+
+```bash
+node generate-slides.js --topic "Your video topic" --script "Your script text" --mode phrases --max-words 24
+```
+
+Or with a script file:
+
+```bash
+node generate-slides.js --topic "Your video topic" --script-file ./script.txt --mode sentence
+```
+
+The CLI prints a full markdown slide plan in the terminal (scene by scene, 3 options each).
+
+## Preview locally (browser)
 
 Use the included preview server:
 
