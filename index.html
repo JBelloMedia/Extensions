@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visual Slide Planner</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Storyboard assistant for editors & animators</p>
+          <h1 id="page-title">Turn a voiceover script into design-ready video slides.</h1>
+          <p class="hero-copy">
+            Paste your script, explain the video, and receive scene-by-scene visual direction:
+            layout, mood, typography, assets, animation cues, and editor notes you can rebuild in
+            Premiere Pro, After Effects, CapCut, or your preferred tool.
+          </p>
+        </div>
+        <div class="hero-card" aria-label="Application promise">
+          <span class="spark">✦</span>
+          <strong>Graphic designer mode</strong>
+          <p>Every output is written as if a designer is briefing you before animation begins.</p>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <form id="planner-form" class="input-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">Input</p>
+            <h2>Describe the video</h2>
+          </div>
+
+          <label for="video-about">What is the video about?</label>
+          <textarea
+            id="video-about"
+            name="video-about"
+            rows="4"
+            placeholder="Example: A short motivational video about recovering from failure and taking the next step."
+          ></textarea>
+
+          <label for="voiceover-script">Voiceover script</label>
+          <textarea
+            id="voiceover-script"
+            name="voiceover-script"
+            rows="12"
+            placeholder="Paste your voiceover script here..."
+            required
+          ></textarea>
+
+          <div class="control-grid">
+            <div>
+              <label for="planning-mode">Slide planning mode</label>
+              <select id="planning-mode" name="planning-mode">
+                <option value="three-scenes">Three core scene slides</option>
+                <option value="related-phrases">Related phrases as one slide</option>
+                <option value="sentence">Every sentence as a separate slide</option>
+              </select>
+            </div>
+            <div>
+              <label for="visual-style">Visual style</label>
+              <select id="visual-style" name="visual-style">
+                <option value="cinematic">Cinematic editorial</option>
+                <option value="minimal">Clean minimal explainer</option>
+                <option value="bold">Bold social media motion</option>
+                <option value="documentary">Documentary collage</option>
+                <option value="luxury">Luxury brand film</option>
+              </select>
+            </div>
+            <div>
+              <label for="platform">Primary format</label>
+              <select id="platform" name="platform">
+                <option value="9:16">Vertical 9:16</option>
+                <option value="16:9">Widescreen 16:9</option>
+                <option value="1:1">Square 1:1</option>
+                <option value="4:5">Feed 4:5</option>
+              </select>
+            </div>
+            <div>
+              <label for="tone">Emotional tone</label>
+              <select id="tone" name="tone">
+                <option value="inspiring">Inspiring</option>
+                <option value="educational">Educational</option>
+                <option value="urgent">Urgent</option>
+                <option value="calm">Calm</option>
+                <option value="dramatic">Dramatic</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit">Design my slides</button>
+            <button type="button" class="secondary" id="load-example">Load example</button>
+          </div>
+        </form>
+
+        <section class="output-panel" aria-live="polite">
+          <div class="output-toolbar">
+            <div>
+              <p class="eyebrow">Output</p>
+              <h2>Designer slide brief</h2>
+            </div>
+            <div class="toolbar-actions">
+              <button type="button" class="secondary" id="copy-brief">Copy brief</button>
+              <button type="button" class="secondary" id="download-json">Download JSON</button>
+              <button type="button" class="secondary" id="print-brief">Print</button>
+            </div>
+          </div>
+          <div id="summary" class="summary-card empty-state">
+            <h3>Your slide plan will appear here.</h3>
+            <p>
+              Choose whether you want exactly three scene slides, related phrases grouped into
+              slides, or one slide for every sentence.
+            </p>
+          </div>
+          <div id="slides" class="slides-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <template id="slide-template">
+      <article class="slide-card">
+        <div class="slide-visual">
+          <div class="slide-number"></div>
+          <div class="visual-shape shape-one"></div>
+          <div class="visual-shape shape-two"></div>
+          <div class="visual-caption"></div>
+        </div>
+        <div class="slide-content">
+          <p class="scene-label"></p>
+          <h3></h3>
+          <p class="script-line"></p>
+          <dl></dl>
+        </div>
+      </article>
+    </template>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
